@@ -1,8 +1,28 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Crabby.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 574.061, 86.2853 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 39.186, 356.463 )
 
 [node name="Main" type="Node2D"]
 
 [node name="Crabby" parent="." instance=ExtResource( 1 )]
 position = Vector2( 223, 125.5 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 501.854, 536.847 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -39.2891, 256.107 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 1063.7, 271.2 )
+shape = SubResource( 2 )
