@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Position2D
+
+var Drop = preload(\"res://scenes/Fire.tscn\")
+
+func _ready():
+	$Timer.connect(\"timeout\", self, \"on_timeout\")
+
+func on_timeout():
+	var drop = Drop.instance()
+	add_child(drop)
+	drop.global_position = Vector2(global_position.x  + rand_range(-600, 600), global_position.y)
+"
+
+[node name="Fuego" type="Position2D"]
+script = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

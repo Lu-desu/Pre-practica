@@ -1,0 +1,206 @@
+[gd_scene load_steps=41 format=2]
+
+[ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Crabby/01-Idle/Idle 08.png" type="Texture" id=2]
+[ext_resource path="res://png/jugar-4.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Instrucciones.gd" type="Script" id=4]
+[ext_resource path="res://png/1-2.png" type="Texture" id=5]
+[ext_resource path="res://png/Island-game-gui/png/buttons/normal/long.png" type="Texture" id=6]
+[ext_resource path="res://Crabby/01-Idle/Idle 06.png" type="Texture" id=7]
+[ext_resource path="res://Crabby/01-Idle/Idle 01.png" type="Texture" id=8]
+[ext_resource path="res://Crabby/01-Idle/Idle 05.png" type="Texture" id=9]
+[ext_resource path="res://Crabby/01-Idle/Idle 07.png" type="Texture" id=10]
+[ext_resource path="res://Crabby/01-Idle/Idle 02.png" type="Texture" id=11]
+[ext_resource path="res://Crabby/01-Idle/Idle 09.png" type="Texture" id=12]
+[ext_resource path="res://Crabby/01-Idle/Idle 03.png" type="Texture" id=13]
+[ext_resource path="res://Crabby/01-Idle/Idle 04.png" type="Texture" id=14]
+[ext_resource path="res://png/unnamed-4.png" type="Texture" id=15]
+[ext_resource path="res://png/Island-game-gui/png/buttons/lock/left.png" type="Texture" id=17]
+[ext_resource path="res://png/unnamed-5.png" type="Texture" id=18]
+[ext_resource path="res://png/unnamed-6.png" type="Texture" id=19]
+[ext_resource path="res://SFX/Juego Javi La Jaiba intro.wav" type="AudioStream" id=20]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 2574, 700 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+font_data = ExtResource( 1 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 2 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 64, 41 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 15 )
+region = Rect2( 64, 0, 64, 41 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 41, 64, 41 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 15 )
+region = Rect2( 64, 41, 64, 41 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 82, 64, 41 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 64, 41 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 18 )
+region = Rect2( 64, 0, 64, 41 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 41, 64, 41 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 18 )
+region = Rect2( 64, 41, 64, 41 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 18 )
+region = Rect2( 0, 82, 64, 41 )
+
+[sub_resource type="SpriteFrames" id=15]
+animations = [ {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 0, 64, 41 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 19 )
+region = Rect2( 64, 0, 64, 41 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 41, 64, 41 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 19 )
+region = Rect2( 64, 41, 64, 41 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 82, 64, 41 )
+
+[sub_resource type="SpriteFrames" id=21]
+animations = [ {
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[node name="Instrucciones" type="CanvasLayer"]
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 4.48365 ]
+}
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 514.907, 303.99 )
+scale = Vector2( 1.6, 1.62002 )
+texture = ExtResource( 5 )
+
+[node name="Jugar" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -316.586
+margin_top = -152.178
+margin_right = -76.5864
+margin_bottom = -89.1776
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Jugar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 468.387, 284.861 )
+scale = Vector2( 1.6, 1.6 )
+texture = ExtResource( 3 )
+
+[node name="5" type="Sprite" parent="."]
+position = Vector2( 390.568, 246.328 )
+rotation = 3.14159
+scale = Vector2( 0.07, 0.07 )
+texture = ExtResource( 17 )
+
+[node name="6" type="Sprite" parent="."]
+position = Vector2( 390.568, 321.08 )
+scale = Vector2( 0.07, 0.07 )
+texture = ExtResource( 17 )
+
+[node name="7" type="Sprite" parent="."]
+position = Vector2( 390.568, 398.206 )
+rotation = 1.5708
+scale = Vector2( 0.07, 0.07 )
+texture = ExtResource( 17 )
+
+[node name="Crabby" type="AnimatedSprite" parent="."]
+position = Vector2( 655.83, 246.316 )
+scale = Vector2( 1.5, 1.5 )
+frames = SubResource( 3 )
+frame = 6
+playing = true
+
+[node name="BM" type="AnimatedSprite" parent="."]
+position = Vector2( 756.339, 403.87 )
+scale = Vector2( 1.5, 1.5 )
+frames = SubResource( 9 )
+frame = 2
+playing = true
+
+[node name="BB" type="AnimatedSprite" parent="."]
+position = Vector2( 755.69, 323.946 )
+scale = Vector2( 1.5, 1.5 )
+frames = SubResource( 15 )
+frame = 4
+playing = true
+
+[node name="Aceite" type="AnimatedSprite" parent="."]
+position = Vector2( 759.117, 484.911 )
+scale = Vector2( 1.5, 1.5 )
+frames = SubResource( 21 )
+playing = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
+autoplay = true
+[connection signal="pressed" from="Jugar" to="." method="_on_Button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Crabby/01-Idle/Idle 01.png" type="Texture" id=1]
 [ext_resource path="res://Crabby/01-Idle/Idle 03.png" type="Texture" id=2]
@@ -125,21 +125,22 @@ tracks/0/keys = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id=8]
-animation = "Fall"
+animation = "Death"
 
 [sub_resource type="AnimationNodeAnimation" id=9]
-animation = "Idle"
+animation = "Fall"
 
 [sub_resource type="AnimationNodeAnimation" id=10]
-animation = "Jump_start"
+animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=11]
-animation = "Jump_stay"
+animation = "Jump_start"
 
 [sub_resource type="AnimationNodeAnimation" id=12]
-animation = "Run"
+animation = "Jump_stay"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "Run"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=14]
 
@@ -148,32 +149,41 @@ animation = "Run"
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=19]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=20]
 
-[sub_resource type="AnimationNodeStateMachine" id=21]
-states/Fall/node = SubResource( 8 )
-states/Fall/position = Vector2( 363, 151 )
-states/Idle/node = SubResource( 9 )
-states/Idle/position = Vector2( 174, 73 )
-states/Jump_start/node = SubResource( 10 )
-states/Jump_start/position = Vector2( 174, 151 )
-states/Jump_stay/node = SubResource( 11 )
-states/Jump_stay/position = Vector2( 263, 228 )
-states/Run/node = SubResource( 12 )
-states/Run/position = Vector2( 363, 73 )
-transitions = [ "Idle", "Run", SubResource( 13 ), "Run", "Idle", SubResource( 14 ), "Idle", "Jump_start", SubResource( 15 ), "Run", "Jump_start", SubResource( 16 ), "Jump_start", "Jump_stay", SubResource( 17 ), "Jump_stay", "Fall", SubResource( 18 ), "Fall", "Idle", SubResource( 19 ), "Fall", "Run", SubResource( 20 ) ]
-start_node = "Idle"
-graph_offset = Vector2( 0, 6.2 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachine" id=24]
+states/Death/node = SubResource( 8 )
+states/Death/position = Vector2( 263, -2 )
+states/Fall/node = SubResource( 9 )
+states/Fall/position = Vector2( 363, 151 )
+states/Idle/node = SubResource( 10 )
+states/Idle/position = Vector2( 174, 73 )
+states/Jump_start/node = SubResource( 11 )
+states/Jump_start/position = Vector2( 174, 151 )
+states/Jump_stay/node = SubResource( 12 )
+states/Jump_stay/position = Vector2( 263, 228 )
+states/Run/node = SubResource( 13 )
+states/Run/position = Vector2( 363, 73 )
+transitions = [ "Idle", "Run", SubResource( 14 ), "Run", "Idle", SubResource( 15 ), "Idle", "Jump_start", SubResource( 16 ), "Run", "Jump_start", SubResource( 17 ), "Jump_start", "Jump_stay", SubResource( 18 ), "Jump_stay", "Fall", SubResource( 19 ), "Fall", "Idle", SubResource( 20 ), "Fall", "Run", SubResource( 21 ), "Idle", "Death", SubResource( 22 ), "Run", "Death", SubResource( 23 ) ]
+start_node = "Idle"
+graph_offset = Vector2( 0, -19.432 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=25]
 
 [node name="Crabby" type="KinematicBody2D"]
+position = Vector2( 0.934036, 4.67019 )
 script = ExtResource( 24 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -182,7 +192,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 3, 3 )
-texture = ExtResource( 19 )
+texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Death = SubResource( 2 )
@@ -193,7 +203,7 @@ anims/Jump_stay = SubResource( 6 )
 anims/Run = SubResource( 7 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 21 )
+tree_root = SubResource( 24 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 22 )
+parameters/playback = SubResource( 25 )

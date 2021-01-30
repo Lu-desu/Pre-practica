@@ -1,0 +1,113 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scenes/Titlescreen.gd" type="Script" id=2]
+[ext_resource path="res://Crabby/01-Idle/Idle 01.png" type="Texture" id=3]
+[ext_resource path="res://Crabby/01-Idle/Idle 03.png" type="Texture" id=4]
+[ext_resource path="res://png/4e15917fd2354302f3d8847e015f8137SdUyuLtvzUYcjphO-1.png" type="Texture" id=5]
+[ext_resource path="res://Crabby/01-Idle/Idle 05.png" type="Texture" id=6]
+[ext_resource path="res://Crabby/01-Idle/Idle 08.png" type="Texture" id=7]
+[ext_resource path="res://Crabby/01-Idle/Idle 07.png" type="Texture" id=8]
+[ext_resource path="res://Crabby/01-Idle/Idle 02.png" type="Texture" id=9]
+[ext_resource path="res://png/La jaiba javi! final.png" type="Texture" id=10]
+[ext_resource path="res://Crabby/01-Idle/Idle 04.png" type="Texture" id=11]
+[ext_resource path="res://Crabby/01-Idle/Idle 06.png" type="Texture" id=12]
+[ext_resource path="res://Crabby/01-Idle/Idle 09.png" type="Texture" id=13]
+[ext_resource path="res://png/4e15917fd2354302f3d8847e015f8137SdUyuLtvzUYcjphO-0.png" type="Texture" id=14]
+[ext_resource path="res://png/4e15917fd2354302f3d8847e015f8137SdUyuLtvzUYcjphO-2.png" type="Texture" id=15]
+[ext_resource path="res://png/unnamed-7.png" type="Texture" id=16]
+[ext_resource path="res://SFX/Juego Javi La Jaiba intro.wav" type="AudioStream" id=17]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 14 ), ExtResource( 5 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+font_data = ExtResource( 1 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 11 ), ExtResource( 6 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 1 )
+
+[node name="Titlescreen" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="Sol" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 96, 80 )
+scale = Vector2( 0.8, 0.8 )
+frames = SubResource( 1 )
+frame = 1
+playing = true
+
+[node name="Empezar" type="Button" parent="."]
+margin_left = 488.0
+margin_top = 376.0
+margin_right = 952.0
+margin_bottom = 440.0
+custom_fonts/font = SubResource( 2 )
+text = "Jugar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instrucciones" type="Button" parent="."]
+margin_left = 488.0
+margin_top = 464.0
+margin_right = 952.0
+margin_bottom = 536.0
+custom_fonts/font = SubResource( 2 )
+text = "Instrucciones"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 520, 298 )
+scale = Vector2( 1.6, 1.61067 )
+texture = ExtResource( 10 )
+
+[node name="Crabby" type="AnimatedSprite" parent="."]
+position = Vector2( 136, 360 )
+scale = Vector2( 10, 10 )
+frames = SubResource( 3 )
+frame = 1
+playing = true
+flip_h = true
+
+[node name="unnamed-7" type="Sprite" parent="."]
+visible = false
+position = Vector2( 728, 304 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 16 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+autoplay = true
+
+[node name="Button" type="Button" parent="."]
+margin_left = 16.0
+margin_top = 536.0
+margin_right = 224.0
+margin_bottom = 584.0
+custom_fonts/font = SubResource( 4 )
+text = "Créditos"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Empezar" to="." method="_on_Empezar_pressed"]
+[connection signal="pressed" from="Instrucciones" to="." method="_on_Instrucciones_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

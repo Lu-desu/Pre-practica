@@ -1,28 +1,249 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scenes/Crabby.tscn" type="PackedScene" id=1]
+[ext_resource path="res://png/3-2.png" type="Texture" id=2]
+[ext_resource path="res://png/unnamed-2.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Health.gd" type="Script" id=4]
+[ext_resource path="res://png/1-2.png" type="Texture" id=5]
+[ext_resource path="res://Fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Scenes/Main.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/FireSpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://png/4e15917fd2354302f3d8847e015f8137SdUyuLtvzUYcjphO-1.png" type="Texture" id=9]
+[ext_resource path="res://png/4e15917fd2354302f3d8847e015f8137SdUyuLtvzUYcjphO-2.png" type="Texture" id=10]
+[ext_resource path="res://png/4e15917fd2354302f3d8847e015f8137SdUyuLtvzUYcjphO-0.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/SolPath.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/BMSpawner.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Bloqueadoe15Spawner.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Bloqueador30Spawner.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Bloqueador50Spawner.tscn" type="PackedScene" id=16]
+[ext_resource path="res://png/4-2.png" type="Texture" id=17]
+[ext_resource path="res://png/warning-emoji.png" type="Texture" id=18]
+[ext_resource path="res://png/left.png" type="Texture" id=19]
+[ext_resource path="res://SFX/Retro Water Drop 01.wav" type="AudioStream" id=20]
+[ext_resource path="res://SFX/Retro Jump Classic 08.wav" type="AudioStream" id=21]
+[ext_resource path="res://SFX/Retro Impact Water 03.wav" type="AudioStream" id=22]
+[ext_resource path="res://SFX/Retro FootStep Grass 01.wav" type="AudioStream" id=23]
+[ext_resource path="res://SFX/Retro Event Wrong Simple 03.wav" type="AudioStream" id=24]
+[ext_resource path="res://SFX/Juego beat 2 Javi Jaiba.wav" type="AudioStream" id=25]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 574.061, 86.2853 )
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1077.77, -43.2549, 0, 0, 0, 0, 128, 160 )
+}
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.5
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 621.351, 86.2853 )
+
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 39.186, 356.463 )
 
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 0.133333, 0.513726, 0.156863, 1, 0.117647, 0.941176, 0.0705882, 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 50
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 19 )
+region_rect = Rect2( 0, 0, 701, 701 )
+
 [node name="Main" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="Nublado" type="Sprite" parent="."]
+position = Vector2( 528, 272 )
+scale = Vector2( 1.8, 1.8 )
+texture = ExtResource( 2 )
+
+[node name="Dia" type="Sprite" parent="Nublado"]
+show_behind_parent = true
+texture = ExtResource( 5 )
+
+[node name="Tarde" type="Sprite" parent="Nublado/Dia"]
+show_behind_parent = true
+texture = ExtResource( 17 )
+
+[node name="Sol" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="SolPath" type="PathFollow2D" parent="Sol"]
+position = Vector2( 1077.77, -43.2549 )
+rotation = -3.14159
+rotate = false
+loop = false
+script = ExtResource( 12 )
+SolSpeed = 8
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Sol/SolPath"]
+scale = Vector2( 0.75, 0.75 )
+frames = SubResource( 2 )
+frame = 2
+playing = true
+flip_v = true
 
 [node name="Crabby" parent="." instance=ExtResource( 1 )]
-position = Vector2( 223, 125.5 )
+position = Vector2( 512, 456 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Drop" type="AudioStreamPlayer" parent="Crabby"]
+stream = ExtResource( 20 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 501.854, 536.847 )
-shape = SubResource( 1 )
+[node name="Jump" type="AudioStreamPlayer" parent="Crabby"]
+stream = ExtResource( 21 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -39.2891, 256.107 )
-shape = SubResource( 2 )
+[node name="Death" type="AudioStreamPlayer" parent="Crabby"]
+stream = ExtResource( 22 )
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 1063.7, 271.2 )
-shape = SubResource( 2 )
+[node name="Run" type="AudioStreamPlayer" parent="Crabby"]
+stream = ExtResource( 23 )
+
+[node name="Damage" type="AudioStreamPlayer" parent="Crabby"]
+stream = ExtResource( 24 )
+volume_db = 0.5
+
+[node name="Bordes" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bordes"]
+position = Vector2( 522.998, 577.078 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Bordes"]
+position = Vector2( -38.7366, 303.902 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Bordes"]
+position = Vector2( 1075.66, 259.55 )
+shape = SubResource( 4 )
+
+[node name="HealthBar" type="Sprite" parent="."]
+position = Vector2( 846.463, 64.9591 )
+texture = ExtResource( 3 )
+
+[node name="Health" type="Line2D" parent="HealthBar"]
+show_behind_parent = true
+position = Vector2( -84.2887, 1.48955 )
+scale = Vector2( 3.1, 3.5 )
+points = PoolVector2Array( 0, 0, 60, 0 )
+gradient = SubResource( 5 )
+end_cap_mode = 1
+script = ExtResource( 4 )
+
+[node name="Timer" type="Timer" parent="HealthBar/Health"]
+wait_time = 0.001
+autostart = true
+
+[node name="Timer2" type="Timer" parent="HealthBar/Health"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Reloj" type="CanvasLayer" parent="."]
+
+[node name="tiempo" type="Label" parent="Reloj" groups=[
+"tiempo",
+]]
+margin_left = 64.0
+margin_top = 40.0
+margin_right = 267.0
+margin_bottom = 84.0
+custom_fonts/font = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="FireSpawner" parent="." instance=ExtResource( 8 )]
+position = Vector2( 544, -256 )
+
+[node name="BMSpawner" parent="." instance=ExtResource( 13 )]
+position = Vector2( 544, -192 )
+
+[node name="Bloqueadoe15Spawner" parent="." instance=ExtResource( 14 )]
+position = Vector2( 544, -64 )
+
+[node name="Bloqueador30Spawner" parent="." instance=ExtResource( 15 )]
+position = Vector2( 544, -128 )
+
+[node name="Bloqueador50Spawner" parent="." instance=ExtResource( 16 )]
+position = Vector2( 544, -320 )
+
+[node name="warning-emoji" type="Sprite" parent="."]
+visible = false
+position = Vector2( 680, 64 )
+scale = Vector2( 0.170796, 0.170796 )
+texture = ExtResource( 18 )
+
+[node name="Derecha" type="Button" parent="."]
+margin_left = 312.0
+margin_top = 577.078
+margin_right = 432.0
+margin_bottom = 697.078
+rect_rotation = 180.0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Izquierda" type="Button" parent="."]
+margin_left = 32.0
+margin_top = 456.0
+margin_right = 152.0
+margin_bottom = 576.0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Salto" type="Button" parent="."]
+margin_left = 992.0
+margin_top = 456.0
+margin_right = 1113.0
+margin_bottom = 579.0
+rect_rotation = 90.1499
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 25 )
+volume_db = 0.2
+autoplay = true
+[connection signal="safe" from="." to="HealthBar/Health" method="_on_Main_safe"]
+[connection signal="warning" from="." to="HealthBar/Health" method="_on_Main_warning"]
+[connection signal="damage" from="Crabby" to="HealthBar/Health" method="_on_Crabby_damage"]
+[connection signal="heal15" from="Crabby" to="HealthBar/Health" method="_on_Crabby_heal15"]
+[connection signal="heal30" from="Crabby" to="HealthBar/Health" method="_on_Crabby_heal30"]
+[connection signal="heal50" from="Crabby" to="HealthBar/Health" method="_on_Crabby_heal50"]
+[connection signal="death" from="HealthBar/Health" to="Crabby" method="_on_Health_death"]
+[connection signal="death" from="HealthBar/Health" to="." method="_on_Health_death"]
+[connection signal="timeout" from="HealthBar/Health/Timer" to="HealthBar/Health" method="_on_Timer_timeout"]
+[connection signal="timeout" from="HealthBar/Health/Timer2" to="." method="_on_Timer2_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="button_down" from="Derecha" to="Crabby" method="_on_Derecha_button_down"]
+[connection signal="button_up" from="Derecha" to="Crabby" method="_on_Derecha_button_up"]
+[connection signal="button_down" from="Izquierda" to="Crabby" method="_on_Izquierda_button_down"]
+[connection signal="button_up" from="Izquierda" to="Crabby" method="_on_Izquierda_button_up"]
+[connection signal="button_down" from="Salto" to="Crabby" method="_on_Salto_button_down"]
