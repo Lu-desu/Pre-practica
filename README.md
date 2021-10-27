@@ -1,4 +1,4 @@
-# Juego-Sernac
+# Pre-practica
 ### Jueego programado para el Sernac
 
 
