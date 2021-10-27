@@ -1,2 +1,4 @@
 # Juego-Sernac
- Juego del bloqueador con el cangrejo owo
+Jueego programado para el Sernac
+Version .exe y .apk descargables
+(No publicado)
