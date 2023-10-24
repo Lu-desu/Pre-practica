@@ -1,5 +1,5 @@
 # Pre-practica
-### Jueego programado para el Sernac
+### Juego programado para el Sernac
 
 
 Version .exe y .apk descargables
